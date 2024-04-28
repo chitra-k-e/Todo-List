@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>Sign Up</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="Stylesex2.css">
+        
+    </head>
+    <body>
+        <div class="container">
+            <div class="background-image"></div>
+            <form id="form" onsubmit="return false;" >
+                    <h1>Sign Up</h1>
+                    <div class="input-control">
+                    <label for="name1">Your Name: </label>
+                    <input type="text" name="name1" id="name1">
+                    <div class="error"></div></div>
+
+                    <div class="input-control">
+                    <label for="email">Email ID: </label>
+                    <input type="text" id="email" name="email">
+                    <div class="error"></div></div>
+
+                    <div class="input-control">
+                    <label for="pass">Password: </label>
+                    <input type="text" id="pass" name="pass">
+                    <div class="error"></div></div>
+
+                    <div class="input-control">
+                    <label for="age">Age: </label>
+                    <input type="text" id="age" name="age">
+                    <div class="error"></div></div>
+
+                    <div class="input-control"> 
+                    <label for="no">Phone no: </label>
+                    <input type="text" id="no" name="no">
+                    <div class="error"></div></div>
+
+                    <div class="input-control">
+                    <label for="list">How do you plan to use todolist </label>
+                    <select name="list" id="list" >
+                        <option value="0" style="display: none;">0</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Work">Work</option>
+                        <option value="Education">Education</option>
+                    </select>
+                    <div class="error"></div></div>
+
+                    <button onclick="success()" type="submit" >Submit</button>
+
+                    <p>Already have an account? <a href="Ex-1.html" style="color:#24a23b; text-decoration: none;">&nbsp;&nbsp;&nbsp;Login</span></p>
+            </form>
+        </div>
+        <script src="validation.js"></script>
+    </body>
+</html>

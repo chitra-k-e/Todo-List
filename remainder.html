@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="reminderApp">
+<head>
+    <title>Remainder</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="remainder.css">
+    
+    <!-- Include AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <script>
+        angular.module('reminderApp', [])
+            .controller('reminderController', function($scope) {
+                $scope.submitForm = function() {
+                    console.log($scope.formData);
+                };
+            });
+    </script>
+</head>
+<body ng-controller="reminderController">
+    <div class="container">
+        <div class="background-image"></div>
+        <form id="form">
+                <h1>Make Your Reminder</h1>
+                <div class="input-control">
+                <label for="name1">Title: </label>
+                <input type="text" name="name1" id="name1" ng-model="formData.name">
+                <div class="error"></div></div>
+
+                <div class="input-control">
+                <label for="reason">Reason for Reminder: </label>
+                <input type="text" id="reason" name="reason" ng-model="formData.reason">
+                <div class="error"></div></div>
+
+                <div class="input-control"> 
+                <label for="date">Date to be Remembered:  </label>
+                <input type="date" id="date" name="date" ng-model="formData.date">
+                <div class="error"></div></div>
+
+                <div class="input-control"> 
+                <label for="date">Time:  </label>
+                <input type="time" id="time" name="time" ng-model="formData.date">
+                <div class="error"></div></div>
+
+                <button type="submit" onclick="scheduleRemainder();">Remember me</button>
+
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Reason</th>
+                            <th>Date & Time</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="remainderTableBody"></tbody>
+                </table>
+        </form>
+    </div>
+    <script>
+        if("Notification" in window)
+        {
+            Notification.requestPermission().then(function (permission) {
+                if(Notification.permission !== "granted"){
+                    alert("Please allow notification access!");
+                    location.reload();
+                }
+            });
+        }
+        var timeoutIds = [];
+        function scheduleRemainder()
+        {
+            var name1 = document.getElementById("name1").value;
+            var reason = document.getElementById("reason").value;
+            var date = document.getElementById("date").value;
+            var time = document.getElementById("time").value;
+
+            var dateTimeString = date + " "+ time;
+            var scheduledTime = new Date(dateTimeString);
+            var currentTime = new Date();
+            var timeDifference = scheduledTime - currentTime;
+
+            if(timeDifference > 0){
+                addRemainder(name1,reason,dateTimeString);
+
+                var timeoutId = setTimeout(function (){
+                    document.getElementById("notificationSound").play();
+
+                var notification = new Notification(name1,
+                {
+                    body: reason,
+                    requireInteraction: true,
+                });
+            },timeDifference);
+            timeoutIds.push(timeoutId);
+            }else{
+            alert("The scheduled time is in the past");
+            }    
+        }
+
+            function addRemainder(name1Value, reasonValue, dateTimeValue)
+            {
+                var tableBody = document.getElementById("remainderTableBody");
+                var row = tableBody.insertRow();
+        
+                var nameCell = row.insertCell(0);
+                var reasonCell = row.insertCell(1);
+                var dateTimeCell = row.insertCell(2);
+                var actionCell = row.insertCell(3);
+        
+                nameCell.innerHTML = name1Value;
+                reasonCell.innerHTML = reasonValue;
+                dateTimeCell.innerHTML = dateTimeValue;
+                actionCell.innerHTML = '<button onclick="deleteRemainder(this);">Delete</button>';
+            }
+        
+
+        function deleteRemainder(button){
+            var row = button.closest("tr");
+            var index = row.rowIndex;
+
+            clearInterval(timeoutIds[index - 1]);
+            timeoutIds.splice(index - 1, 1);
+
+            row.remove();
+        }
+    </script>
+
+
+    <audio src="notificationeffect.mp3" id="notificationSound"></audio>
+</body>
+</html>

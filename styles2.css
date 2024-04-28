@@ -1,0 +1,40 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.background-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 800;
+    
+    background-image: url('bg2.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.6; /* Adjust the opacity as needed */
+}
+
+.container {
+
+    text-align: center;
+    color: rgb(5, 4, 15);
+}
+
+h1 {
+    font-size: 3em;
+    position: relative;
+    color: rgb(68, 174, 36);
+}
+
+p {
+    font-size: 1.2em;
+}

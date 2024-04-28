@@ -1,0 +1,88 @@
+body {
+    
+    font-family: 'Poppins', sans-serif;
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 800;
+    background-image: url('bg.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.6; /* Adjust the opacity as needed */
+}
+#form {
+    position: relative;
+    width: 390px;
+    margin: 20vh auto 0 auto;
+    padding: 20px;
+    background-color: rgb(203, 219, 221);
+    border-radius: 4px;
+    font-size: 12px;
+
+}
+
+#form h1 {
+    color: #24a23b;
+    text-align: center;
+}
+
+#form button {
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+    color: white;
+    background-color: #24a23b;
+    border: none;
+    border-radius: 4px;
+}
+
+.input-control {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-control input {
+    border: 2px solid #f0f0f0;
+	border-radius: 4px;
+	display: block;
+	font-size: 12px;
+	padding: 10px;
+	width: 100%;
+}
+.input-control select
+{
+    border: 2px solid #f0f0f0;
+	border-radius: 4px;
+	display: block;
+	font-size: 12px;
+	padding: 10px;
+	width: 100%;
+}
+.input-control input:focus {
+    outline: 0;
+}
+
+.input-control.success input {
+    border-color: #09c372;
+}
+.input-control.success select {
+    border-color: #09c372;
+}
+
+.input-control.error input {
+    border-color: #ff3860;
+}
+
+.input-control.error select {
+    border-color: #ff3860;
+}
+.input-control .error {
+    color: #ff3860;
+    font-size: 10px;
+    height: 13px;
+}
